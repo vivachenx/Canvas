@@ -4,4 +4,3 @@
 
 ![game](game.gif)
 
-[点击 转移到资源页](https://)

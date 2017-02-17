@@ -1,9 +1,6 @@
-//requestAnimationFrame兼容性处理
-var w = window
-requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame
-
 //创建游戏对象和计分变量
 var monstersCaught = 0
+
 var hero = {
     speed: 256,
 }
@@ -11,20 +8,13 @@ var monster = {}
 
 var keysDown = {}
 
-//创建, 设置canvas, 并将其插入html
-var canvas = document.createElement("canvas")
-var ctx = canvas.getContext("2d")
-canvas.width = 512;
-canvas.height = 480;
-document.body.appendChild(canvas)
-
 //加载图片
 var bgReady = false
 var bgImage = new Image()
+bgImage.src = "images/background.png"
 bgImage.onload = function() {
     bgReady = true
 }
-bgImage.src = "images/background.png"
 
 var heroReady = false
 var heroImage = new Image()
@@ -40,7 +30,6 @@ monsterImage.onload = function () {
 };
 monsterImage.src = "images/monster.png";
 
-
 var eventListener = function() {
     addEventListener("keydown", function(e){
         keysDown[e.keyCode] = true
@@ -53,6 +42,7 @@ var eventListener = function() {
 
 
 var reset = function() {
+    var canvas = document.querySelector('canvas')
     if (monstersCaught === 0) {
         hero.x = canvas.width / 2
         hero.y = canvas.height / 2
@@ -92,6 +82,8 @@ var update = function(modifier) {
 }
 
 var render = function() {
+    var canvas = document.querySelector('canvas')
+    var ctx = canvas.getContext('2d')
     if (bgReady) {
         ctx.drawImage(bgImage, 0, 0)
     }
@@ -121,6 +113,15 @@ var game = function() {
 }
 
 var init = function() {
+    //requestAnimationFrame兼容性处理
+    var w = window
+    requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame
+    //创建, 设置canvas, 并将其插入html
+    var canvas = document.createElement("canvas")
+    var ctx = canvas.getContext("2d")
+    canvas.width = 512;
+    canvas.height = 480;
+    document.body.appendChild(canvas)
     eventListener()
     reset()
     render()

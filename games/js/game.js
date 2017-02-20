@@ -23,12 +23,12 @@ heroImage.onload = function() {
 }
 heroImage.src = "images/hero.png"
 
-var monsterReady = false;
-var monsterImage = new Image();
+var monsterReady = false
+var monsterImage = new Image()
 monsterImage.onload = function () {
-    monsterReady = true;
-};
-monsterImage.src = "images/monster.png";
+    monsterReady = true
+}
+monsterImage.src = "images/monster.png"
 
 var eventListener = function() {
     addEventListener("keydown", function(e){
@@ -36,8 +36,8 @@ var eventListener = function() {
     }, false)
 
     addEventListener("keyup", function(e) {
-        delete keysDown[e.keyCode];
-    }, false);
+        delete keysDown[e.keyCode]
+    }, false)
 }
 
 
@@ -47,8 +47,8 @@ var reset = function() {
         hero.x = canvas.width / 2
         hero.y = canvas.height / 2
     }
-    monster.x = 32 + (Math.random() * (canvas.width - 64));
-    monster.y = 32 + (Math.random() * (canvas.height - 64));
+    monster.x = 32 + (Math.random() * (canvas.width - 64))
+    monster.y = 32 + (Math.random() * (canvas.height - 64))
 }
 
 var update = function(modifier) {
@@ -94,11 +94,11 @@ var render = function() {
         ctx.drawImage(monsterImage, monster.x, monster.y)
     }
 
-    ctx.fillStyle = "rgb(250, 250, 250)";
-    ctx.font = "24px Helvetica";
-    ctx.textAlign = "left";
-    ctx.textBaseline = "top";
-    ctx.fillText("Goblins caught: " + monstersCaught, 32, 32);
+    ctx.fillStyle = "rgb(250, 250, 250)"
+    ctx.font = "24px Helvetica"
+    ctx.textAlign = "left"
+    ctx.textBaseline = "top"
+    ctx.fillText("Goblins caught: " + monstersCaught, 32, 32)
 }
 
 var game = function() {
@@ -119,8 +119,8 @@ var init = function() {
     //创建, 设置canvas, 并将其插入html
     var canvas = document.createElement("canvas")
     var ctx = canvas.getContext("2d")
-    canvas.width = 512;
-    canvas.height = 480;
+    canvas.width = 512
+    canvas.height = 480
     document.body.appendChild(canvas)
     eventListener()
     reset()
